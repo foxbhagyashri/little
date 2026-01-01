@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /Little_Learning/little-learning1/php-backend/
+    
+    # Allow direct access to storage folder
+    RewriteRule ^storage/ - [L]
+    
+    # Allow direct access to setup.php and test.php
+    RewriteRule ^(setup|test)\.php$ - [L]
+    
+    # Route API calls to api/index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ api/index.php [L,QSA]
+</IfModule>
